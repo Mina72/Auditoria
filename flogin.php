@@ -9,9 +9,7 @@
     $pass=($_POST['pass']);
 
 
-    $rol=0;
-    $inicio=0;
-
+    
     $op=(0);
     $time = time();
     $fecha=(date("d-m-Y (H:i:s)", $time));
@@ -28,29 +26,6 @@
     }
 
     $direc=(getRealIP());
-
-  
-    
-      $cod_rol=$rol+1;
-      $consulta=("call paBuscar(?,?)");
-      $sentencia = $conexion->prepare($consulta);
-      $sentencia->bind_param('ss',$cod_rol,$usuario);
-      $sentencia->execute();
-      $sentencia->store_result();
-      $inicio=$sentencia->num_rows();
-
-
-    switch ($cod_rol) {
-      case '1':
-        header("location:opcionesAdmin.php");
-        break;
-      
-      default:
-        # code...
-        break;
-    }
-
-
 
 
     if($sentencia = $conexion->prepare($consulta)){
@@ -75,7 +50,7 @@
         
       }
 
-          $sql=new connection();
+      $sql=new connection();
           $con = $sql->get_conection();
           $consulta=("call paVit1(?,?,?,?,?,?)");
           $sentencia = $con->prepare($consulta);
